@@ -1,11 +1,12 @@
-import { connectDB } from "config";
 import express, { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
-import { errorHandler, limiterMiddleware, requestLogger } from "middlewares";
-import authRoutes from "routes/authRoutes";
+import passport from "passport";
+import { connectDB, passportConfig, swaggerDocs } from "./config";
+import { errorHandler, limiterMiddleware, requestLogger } from "./middlewares";
+import authRoutes from "./routes/authRoutes";
 
 dotenv.config();
 
@@ -32,8 +33,14 @@ app.use(
   })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+passportConfig();
+
 app.use(limiterMiddleware);
 app.use(requestLogger);
+
+swaggerDocs(app);
 
 app.use("/api/v1/auth", authRoutes);
 

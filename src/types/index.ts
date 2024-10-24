@@ -3,7 +3,7 @@ import { Document } from "mongoose";
 interface IUser extends Document {
   email: string;
   password: string;
-  verification: string;
+  verification?: string;
   phoneNumber?: string;
   googleId?: string;
   isActive: boolean;

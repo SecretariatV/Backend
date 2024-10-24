@@ -1,5 +1,5 @@
-import { logger } from "config";
 import { NextFunction, Request, Response } from "express";
+import { logger } from "../config";
 
 export const errorHandler = (
   error: any,

@@ -1,8 +1,8 @@
-import { logger } from "config";
 import { NextFunction, Request, Response } from "express";
-import User from "models/User";
 import ms from "ms";
-import { generateToken } from "utils";
+import User from "../models/User";
+import { logger } from "../config";
+import { generateToken } from "../utils";
 
 export const register = async (
   req: Request,

@@ -1,6 +1,6 @@
-import app from "app";
-import { logger } from "config";
 import dotenv from "dotenv";
+import app from "./app";
+import { logger } from "./config";
 
 dotenv.config();
 

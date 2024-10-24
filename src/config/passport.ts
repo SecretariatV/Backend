@@ -1,8 +1,8 @@
-import User from "models/User";
 import passport from "passport";
 import { Strategy as localStrategy } from "passport-local";
 import { Strategy as googleStrategy } from "passport-google-oauth20";
 import { logger } from "./logger";
+import User from "../models/User";
 
 export const passportConfig = () => {
   passport.use(
@@ -45,7 +45,7 @@ export const passportConfig = () => {
       {
         clientID: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-        callbackURL: "/api/v1/auth/google/callback",
+        callbackURL: process.env.GOOGLE_CALLBACK_URL!,
       },
       async (_token, _tokenSecret, profile, done) => {
         try {

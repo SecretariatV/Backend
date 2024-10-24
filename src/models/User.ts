@@ -1,6 +1,6 @@
 import { Model, model, Schema } from "mongoose";
-import { IUser } from "types";
 import bcrypt from "bcryptjs";
+import { IUser } from "../types";
 
 interface IUserModel extends Model<IUser> {
   findOneOrCreatedFromGoogle(profile: any): Promise<IUser>;
@@ -9,7 +9,7 @@ interface IUserModel extends Model<IUser> {
 const userSchema = new Schema<IUser>({
   email: { type: String, required: true, unique: true },
   password: { type: String },
-  verification: { type: String, required: true },
+  verification: { type: String },
   phoneNumber: { type: String, unique: true, sparse: true },
   googleId: { type: String, unique: true, sparse: true },
   isActive: { type: Boolean, required: true, default: false },
